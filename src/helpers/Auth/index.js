@@ -1,5 +1,5 @@
 const axios = require('axios')
-const { Services } = require('../../consts')
+const { Services } = require('../../../constants')
 
 class Auth {
     constructor() {
@@ -10,19 +10,19 @@ class Auth {
         this.PASSWORD = process.env.LOGIN_PASSWORD
     }
 
-    static getInstance(): Auth {
+    getInstance() {
         return this._instance || (this._instance = new this())
     }
 
-    getMoodleCategoriesToken(): string {
+    getMoodleCategoriesToken() {
         return this.SERVICE_MOODLE_CATEGORIES_TOKEN
     }
 
-    public getMoodleMobileToken(): string {
+    getMoodleMobileToken() {
         return this.SERVICE_MOODLE_MOBILE_TOKEN
     }
 
-    public async revalidateTokens(): Promise<void> {
+    async revalidateTokens() {
         await axios.get(this.getTokenUri(Services.MOODLE_CATEGORIES_DATA))
             .then(response => {
                 this.SERVICE_MOODLE_CATEGORIES_TOKEN = response.data.token
@@ -36,12 +36,12 @@ class Auth {
             .catch(ServerError => console.error(ServerError))
     }
 
-    private getTokenUri(service): string {
-        if (!this.USERNAME.isEmpty() && !this.PASSWORD.isEmpty()) {
+    getTokenUri(service) {
+        if (this.USERNAME && this.PASSWORD) {
             return `${this.SERVICE_MOODLE_URL}/login/token.php?username=${this.USERNAME}&password=${this.PASSWORD}&service=${service}`
         }
         throw new Error(`We don't have valid params to get a token`)
     }
 }
 
-export default Auth;
+module.exports = Auth;
