@@ -13,11 +13,7 @@ const GetCategoires = async (req, res) => {
         await auth.revalidateTokens()
         let URI = new WebServiceUri(MoodleCategoriesDataFunctions.LOCAL_MOODLE_CATEGORIES_CHILDS, auth.getMoodleCategoriesToken(), `categoryid=${String(req.params.id)}`).getURI()
         let response = await axios.get(URI)
-        if (response.data.errorcode === 'invalidtoken') {
-            await auth.revalidateTokens()
-            URI = new WebServiceUri(MoodleCategoriesDataFunctions.LOCAL_MOODLE_CATEGORIES_CHILDS, auth.getMoodleCategoriesToken(), `categoryid=${String(req.params.id)}`).getURI()
-            response = await axios.get(URI)
-        }
+
         let aux = response.data
         aux.forEach(childCategory => {
             categories.push(new Category(childCategory.id, childCategory.name, childCategory.idnumber, childCategory.description, childCategory.descriptionformat, childCategory.parent, childCategory.sortorder, childCategory.coursecount, childCategory.visible))
