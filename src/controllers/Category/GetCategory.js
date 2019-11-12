@@ -11,17 +11,13 @@ const GetCategory = async (req, res) => {
         let auth = new Auth
         await auth.revalidateTokens()
         let URI = new WebServiceUri(MoodleCategoriesDataFunctions.LOCAL_MOODLE_CATEGORIES_GET_CATEGORY, auth.getMoodleCategoriesToken(), `categoryid=${String(req.params.id)}`).getURI()
-        console.log(URI);
-        console.log(auth);
-
         let response = await axios.get(URI)
-        console.log(response.data.errorcode);
+
         if (response.data.errorcode === 'invalidtoken') {
             await auth.revalidateTokens()
             URI = new WebServiceUri(MoodleCategoriesDataFunctions.LOCAL_MOODLE_CATEGORIES_CHILDS, auth.getMoodleCategoriesToken(), `categoryid=${String(req.params.id)}`).getURI()
             response = await axios.get(URI)
         }
-        console.log(response.data);
         let aux = response.data
         const category = new Category(aux.id, aux.name, aux.idnumber, aux.description, aux.descriptionformat, aux.parent, aux.sortorder, aux.coursecount, aux.visible)
 
@@ -33,11 +29,10 @@ const GetCategory = async (req, res) => {
         if (ConvertQuerySearch(req.query.ValidateCategory)) {
             await category.ConsolidateStats()
         }
-        console.log(category);
         res.status(200).json(category)
     } catch (error) {
         console.error(error);
-        res.status(500).json({ response: 'me las cague!' });
+        res.status(500).json(error);
     }
 
 };

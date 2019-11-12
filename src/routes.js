@@ -11,10 +11,10 @@ module.exports = () => {
   });
 
   indexRouter.get("/category/:id", category.GetCategory);
-  // indexRouter.get("/category/:id/childs", GetCategoires);
-  
-  
+  indexRouter.get("/category/:id/childs", category.GetCategoires);
+
+
   router.use("/", indexRouter);
-  
+
   return router;
 };

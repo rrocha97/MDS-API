@@ -6,8 +6,6 @@ class WebServiceUri {
     }
 
     getURI() {
-        console.log(this.params);
-
         if (this.params)
             return encodeURI(`http://savio.utb.edu.co/webservice/rest/server.php?wsfunction=${this.wsfunction}&${this.params}&moodlewsrestformat=json&wstoken=${this.token}`)
         else
