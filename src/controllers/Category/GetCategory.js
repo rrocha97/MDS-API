@@ -13,7 +13,6 @@ const GetCategory = async (req, res) => {
         let URI = new WebServiceUri(MoodleCategoriesDataFunctions.LOCAL_MOODLE_CATEGORIES_GET_CATEGORY, auth.getMoodleCategoriesToken(), `categoryid=${String(req.params.id)}`).getURI()
         let response = await axios.get(URI)
 
-
         let aux = response.data
         const category = new Category(aux.id, aux.name, aux.idnumber, aux.description, aux.descriptionformat, aux.parent, aux.sortorder, aux.coursecount, aux.visible)
 

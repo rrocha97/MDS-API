@@ -7,7 +7,7 @@ const { MoodleApiFunctions } = require('../../../constants')
 // import { Module } from './Week/Module';
 // import { throws } from 'assert';
 // import { type } from 'os';
-const { GetSyllabusWords, GetFolderNamesSuffixWords, GetFileNamesSuffixWords, GetPercentajeToBeValid, GetTotalFileNameSuffix, GetTotalFolderNameSuffix } = require('../../../constants')
+const { GetSyllabusWords, GetFolderNamesSuffixWords, GetFileNamesSuffixWords, GetPercentajeToBeValid, GetTotalFileNameSuffix, GetTotalFolderNameSuffix } = require('../../helpers/utils')
 
 class Course {
     constructor(id, category, sortorder, fullname, shortname,
