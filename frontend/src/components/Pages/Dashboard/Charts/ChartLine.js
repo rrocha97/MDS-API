@@ -4,13 +4,7 @@ import Chart from "react-apexcharts";
 class chartBar extends Component {
     constructor(props) {
         super(props);
-        console.log('this.props');
-        console.log(this.props);
-
         const { DataSource } = this.props
-        console.log('DataSource');
-        console.log(DataSource);
-
         this.state = {
             options: {
                 title: {

@@ -13,13 +13,13 @@ class CompliancePanel extends Component {
                     </ExpansionPanel.Summary>
                     <ExpansionPanel.Content>
                         <div className="col-lg-4 ">
-                            <ChartBar DataSource={this.props.graphs.am_attendees_courses} />
+                            <ChartBar DataSource={this.props.graphs.am_activities_sent_courses} />
                         </div>
                         <div className="col-lg-4 ">
-                            <ChartBar DataSource={this.props.graphs.am_resources_courses} />
+                            <ChartBar DataSource={this.props.graphs.am_activities_not_sent_courses} />
                         </div>
                         <div className="col-lg-4 ">
-                            <ChartBar DataSource={this.props.graphs.am_interaction_resources_courses} />
+                            <ChartBar DataSource={this.props.graphs.am_cumplition_courses} />
                         </div>
                     </ExpansionPanel.Content>
                 </ExpansionPanel>

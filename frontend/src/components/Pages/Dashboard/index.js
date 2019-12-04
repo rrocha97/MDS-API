@@ -6,7 +6,7 @@ import Toolbar from 'emerald-ui/lib/Toolbar';
 import request from '../../../utils/requets';
 
 import './css/dashboard.css';
-const { URL_API = ' http://localhost:3050/' } = process.env
+const { REACT_URL_API = ' http://localhost:3050/' } = process.env
 
 
 class Body extends Component {
@@ -24,6 +24,8 @@ class Body extends Component {
 
   async handlerSearchStudents() {
     // const response = await request.get(`${URL_API}course/${CourseId}`)
+    console.log(REACT_URL_API);
+
     await this.setState({
       studentData: {
         "nombre": "Rafael Rocha Barrios",
@@ -45,6 +47,24 @@ class Body extends Component {
           am_interaction_resources_courses: {
             seriesName: "Recursos revisados",
             title: "Interacción de recurso por cursos",
+            yAxis: [30, 40, 45, 50, 49, 60, 70, 91],
+            xAxis: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
+          },
+          am_activities_sent_courses: {
+            seriesName: "Actividades",
+            title: "Actividades enviadas por cursos",
+            yAxis: [30, 40, 45, 50, 49, 60, 70, 91],
+            xAxis: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
+          },
+          am_activities_not_sent_courses: {
+            seriesName: "Actividades",
+            title: "Actividades no enviadas por cursos",
+            yAxis: [30, 40, 45, 50, 49, 60, 70, 91],
+            xAxis: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
+          },
+          am_cumplition_courses: {
+            seriesName: "Porcentaje de cumplimiento",
+            title: "Porcentaje de cumplimiento por cursos",
             yAxis: [30, 40, 45, 50, 49, 60, 70, 91],
             xAxis: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
           },
